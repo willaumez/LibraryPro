@@ -1,0 +1,43 @@
+
+
+main{
+  min-height: 90vh;
+  text-decoration: none;
+
+}
+
+Header{
+  text-align: center;
+  word-wrap: break-word;
+}
+
+h1{
+  font-size: 2rem;
+  padding:1rem 0;
+  word-wrap: break-word;
+}
+h1:hover{
+  color: darkgreen;
+  word-wrap: break-word;
+}
+
+h2{
+  font-size: 1.4rem;
+  padding:0.5rem 0;
+  word-wrap: break-word;
+}
+
+h3, h4, h5{
+    padding:1rem 0;
+  word-wrap: break-word;
+}
+
+.titre{
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-align: center;
+
+}
+
+
+
