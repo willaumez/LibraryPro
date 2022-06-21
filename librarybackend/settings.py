@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-grst)0%gjb&q!bsx(6ga$exppxx$joy&w@2j!l(arrr55+27od'
+SECRET_KEY = 'g***hcbjftsdcjzdvzczcvzsdczzjcdzscyvdzzscvsgsdvhsdcvzsdvvhsdvcgsvdcvjgsdvcsvzdcvszckzcvgsudvcdsucsvucsucksducvcjbx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -169,7 +169,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = 'static/images'
 
 STATIC_ROOT = BASE_DIR / 'resources'
-
 
 
 # Default primary key field type
