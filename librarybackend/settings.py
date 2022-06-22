@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'g***hcbjftsdcjzdvzczcvzsdczzjcdzscyvdzzscvsgsdvhsdcvzsdvvhsdvcgsvdcvjgsdvcsvzdcvszckzcvgsudvcdsucsvucsucksducvcjbx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -194,7 +194,7 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+
 DEFAULT_FILE_STORAGE = 'base.storage_backends.MediaStorage'
 
 # Default primary key field type
