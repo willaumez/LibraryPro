@@ -22,7 +22,7 @@ function SearchCategory() {
             <div className="scrollmenu">
                 {categories.map(category => (
                     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                    <LinkContainer key={category._id} to={`/?category=${category._id}`}> {category.nom} </LinkContainer>
+                        <a key={category._id} href={`/?category=${category._id}`}> {category.nom} </a>
                 ))}
             </div>
 </div>

@@ -31,7 +31,6 @@ function HomeScreen() {
         setCat(cate)
     }
 
-    console.log('keyword:', keyword, '--- cate: ', cate)
 
 
     useEffect(() => {
