@@ -10,7 +10,7 @@ import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../constants/orderConstants";
 import { listMyOrders } from "../actions/orderActions";
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function DetailsOrderScreen() {

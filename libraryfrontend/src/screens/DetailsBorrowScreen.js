@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import { getBorrowDetails, listMyBorrows, takeBorrow, returnBorrow} from "../actions/orderActions";
 import { BORROW_TAKE_RESET, BORROW_RETURN_RESET  } from "../constants/orderConstants";
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function DetailsBorrowScreen() {

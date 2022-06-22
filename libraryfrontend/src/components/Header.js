@@ -25,7 +25,7 @@ function Header() {
         <header className="text-center">
             <Navbar collapseOnSelect expand="lg" className='container-fluid' variant="dark"
                     style={{backgroundColor: "green", paddingLeft: '2%', paddingRight: '2%'}}>
-                <LinkContainer to="/#">
+                <LinkContainer to="/">
                     <Navbar.Brand>LIBRARY</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
