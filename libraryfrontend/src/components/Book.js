@@ -7,7 +7,6 @@ import axios from "axios";
 import {GetCategory} from "./GetCategoryName";
 
 
-
 function Book({book}) {
 
     //const [isCate, setIsCate] = useState(false)
@@ -19,7 +18,7 @@ function Book({book}) {
     return (
         <Card className="my-3 p-2" style={{textAlign: "center", borderRadius: 30}}>
             <Link to={`/book/${book._id}`}>
-                <Card.Img src={`${book.image}`}
+                <Card.Img src={`/static${book.image}`}
                           style={{height: 480, borderRadius: '30px 30px 0px 0px'}}/>
             </Link>
             <Card.Body>
