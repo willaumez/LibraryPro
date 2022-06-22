@@ -5,7 +5,7 @@ import Book from "../components/Book";
 import {listBooks} from "../actions/bookActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import {useLocation, useParams, useHistory} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {listCategoryDetails} from "../actions/categoryActions";
 import SearchCategory from "../components/SearchCategory";
 import Paginate from "../components/Paginate";
@@ -30,7 +30,6 @@ function HomeScreen() {
         setCate(keyword.split('=')[1].split('&')[0])
         setCat(cate)
     }
-
 
 
     useEffect(() => {

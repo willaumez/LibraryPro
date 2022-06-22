@@ -112,7 +112,7 @@ div.scrollmenu {
     border: 2px solid #85ff85;
 }
 
-div.scrollmenu a {
+div.scrollmenu Button {
     display: inline-block;
     border-radius: 17px;
     color: white;
@@ -123,6 +123,10 @@ div.scrollmenu a {
     background-color: black;
     border-bottom: 1px solid green;
     border-top: 1px solid green;
+}
+
+div.scrollmenu Button:focus{
+    background-color: green;
 }
 
 div.scrollmenu a:hover {

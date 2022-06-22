@@ -18,14 +18,18 @@ function SearchCategory() {
     }, [dispatch])
 
 
-    return (<div>
-            <div className="scrollmenu">
-                {categories.map(category => (
-                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                        <a key={category._id} href={`/?category=${category._id}`}> {category.nom} </a>
-                ))}
-            </div>
-</div>
+    const submitHandler = (cateId) => {
+        navigate(`/?category=${cateId}`)
+    }
+
+
+    return (
+        <div className="scrollmenu">
+            {categories.map(category => (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                <Button key={category._id} onClick={(e) => submitHandler(category._id)}> {category.nom} </Button>
+            ))}
+        </div>
     )
 }
 
