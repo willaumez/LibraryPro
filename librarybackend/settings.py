@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'rest_framework',
     'corsheaders',
     'base.apps.BaseConfig',
@@ -124,9 +126,20 @@ WSGI_APPLICATION = 'librarybackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'bd.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'librarydata',
+#        'USER': 'postgres',
+#        'PASSWORD': 'willaumez2000',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -162,16 +175,27 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = 'images/'
-
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'libraryfrontend/build'
 ]
 
-MEDIA_ROOT = 'static/images'
+# MEDIA_ROOT = 'static/images'
+# MEDIA_URL = 'images/'
 
 STATIC_ROOT = BASE_DIR / 'resources'
+
+AWS_ACCESS_KEY_ID = 'AKIAUQL6NW6DU5QKC5MK'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'libraryprojectg2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
+DEFAULT_FILE_STORAGE = 'base.storage_backends.MediaStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

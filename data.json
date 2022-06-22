@@ -1,0 +1,333 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$vveK98b0r5Y2nQYcHajkk9$atbla1AWHp+gKC21UX9gk0XYJ5MqT6VGlNek3Nh0cgk=",
+      "last_login": "2022-06-16T19:32:56.831Z",
+      "is_superuser": true,
+      "username": "owanisanajency@gmail.com",
+      "first_name": "willaumez",
+      "last_name": "",
+      "email": "owanisanajency@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-06-14T14:53:26.982Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$nNlJEDzluXPzW76VRUd9Ha$Xp/s/mUMv34qyTz34Pp86x5OX13UoBu9cfjvgwqxGIE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "habib@gmail.com",
+      "first_name": "habib",
+      "last_name": "",
+      "email": "habib@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-06-14T20:08:13.409Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$C6kIoRMzgRuJMnHWmr61bY$wHD7je7ci5qp2i9nT/m5oCuQa9KBvmDZURzt34uc0j8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "owanisanajencyw@gmail.com",
+      "first_name": "willaumez22",
+      "last_name": "",
+      "email": "owanisanajencyw@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-06-20T22:52:58.218Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$sXaMlWE22KyoW06Fp3Ao7v$yhvMmj8/wpzGrbZeeIQ60EQlUn+bRTx9TTfyS0fRKO8=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "habibt@gmail.com",
+      "first_name": "habibt",
+      "last_name": "",
+      "email": "habibt@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2022-06-20T23:25:57.919Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+
+  {
+    "model": "base.category",
+    "pk": 4,
+    "fields": {
+      "nom": "WEBTOON",
+      "user": 1,
+      "description": "hdzhvgcdhsjc",
+      "dateCreate": "2022-06-20T19:35:21.650Z"
+    }
+  },
+  {
+    "model": "base.category",
+    "pk": 10,
+    "fields": {
+      "nom": "mangas",
+      "user": 1,
+      "description": "dvb dhj bjdf dtzhfsc",
+      "dateCreate": "2022-06-20T23:03:10.997Z"
+    }
+  },
+  {
+    "model": "base.book",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "title": "autre",
+      "author": "scsd",
+      "isbn": "sdcdsc",
+      "date_pub": "2022-06-17T00:00:00Z",
+      "image": "0.jpeg",
+      "category": 4,
+      "categoryName": "WEBTOON",
+      "description": "fdvccvfd",
+      "numReviews": 1,
+      "price": "12.00",
+      "qte": 118,
+      "createdAt": "2022-06-20T19:37:02.637Z"
+    }
+  },
+  {
+    "model": "base.book",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "title": "autress",
+      "author": "scsd",
+      "isbn": "sdcdsc",
+      "date_pub": "2022-06-17T00:00:00Z",
+      "image": "wp8339491-herrscher-of-thunder-wallpapers.jpg",
+      "category": 10,
+      "categoryName": "mangas",
+      "description": "fdvccvfd",
+      "numReviews": 2,
+      "price": "12.00",
+      "qte": 0,
+      "createdAt": "2022-06-20T23:04:04.358Z"
+    }
+  },
+  {
+    "model": "base.ordered",
+    "pk": 27,
+    "fields": {
+      "user": 1,
+      "book": 7,
+      "userName": "willaumez",
+      "userEmail": "owanisanajency@gmail.com",
+      "bookTitle": "autress",
+      "bookAuthor": "scsd",
+      "createdAt": "2022-06-20T23:23:58.349Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 27,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "teste",
+      "createdAt": "2022-06-17T22:11:20.146Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 28,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "teshsdhcvdscsc\ncdscvsfv",
+      "createdAt": "2022-06-17T22:11:50.023Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 29,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "testfzghdcs",
+      "createdAt": "2022-06-18T19:52:29.957Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 30,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "thvhgcudcscscs",
+      "createdAt": "2022-06-19T09:48:45.973Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 31,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "hfgdszvchsgdvsdvsdvv",
+      "createdAt": "2022-06-19T23:09:29.363Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 32,
+    "fields": {
+      "book": null,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "zsgkdvcshdnbvcfdfvs",
+      "createdAt": "2022-06-19T23:09:36.243Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 36,
+    "fields": {
+      "book": 7,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "hdsvcscds",
+      "createdAt": "2022-06-20T23:24:42.396Z"
+    }
+  },
+  {
+    "model": "base.review",
+    "pk": 38,
+    "fields": {
+      "book": 2,
+      "user": 1,
+      "name": "willaumez",
+      "comment": "ggg",
+      "createdAt": "2022-06-21T20:42:27.750Z"
+    }
+  },
+  {
+    "model": "base.order",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "paymentMethod": "PayPal",
+      "taxPrice": "0.18",
+      "shippingPrice": "20.00",
+      "totalPrice": "32.18",
+      "isPaid": false,
+      "paidAt": null,
+      "isDelivered": false,
+      "deliveredAt": null,
+      "createdAt": "2022-06-20T23:14:15.219Z"
+    }
+  },
+  {
+    "model": "base.orderitem",
+    "pk": 8,
+    "fields": {
+      "book": null,
+      "order": null,
+      "title": "autrexx",
+      "qte": 1,
+      "price": "22.00",
+      "image": "/images/3_fPr2Ze6.jpg"
+    }
+  },
+  {
+    "model": "base.orderitem",
+    "pk": 17,
+    "fields": {
+      "book": 2,
+      "order": 8,
+      "title": "autre",
+      "qte": 1,
+      "price": "12.00",
+      "image": "/images/0.jpeg"
+    }
+  },
+  {
+    "model": "base.shippingaddress",
+    "pk": 8,
+    "fields": {
+      "order": 8,
+      "address": "Lot 24 C",
+      "city": "Casablanca",
+      "postalCode": "20000",
+      "country": "MAROC",
+      "shippingPrice": "20.00"
+    }
+  },
+  {
+    "model": "base.borrow",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "isTake": false,
+      "takeAt": null,
+      "isReturn": false,
+      "returnAt": null,
+      "codeVer": "PK4W71JC4TIJDF5",
+      "dateBor": "2022-06-20T23:15:53.288Z",
+      "dateLimit": "2022-06-28T00:00:00Z",
+      "BorrowAt": "2022-06-20T23:15:53.288Z"
+    }
+  },
+  {
+    "model": "base.borrowitem",
+    "pk": 2,
+    "fields": {
+      "book": null,
+      "borrow": null,
+      "BorrowItemAt": "2022-06-18T19:35:56.949Z",
+      "title": "autrexxy",
+      "image": "/images/FHypE5-XIAAH8jz_Jem0Wee.jpeg"
+    }
+  },
+  {
+    "model": "base.borrowitem",
+    "pk": 4,
+    "fields": {
+      "book": 2,
+      "borrow": 2,
+      "BorrowItemAt": "2022-06-20T23:15:53.293Z",
+      "title": "autre",
+      "image": "/images/0.jpeg"
+    }
+  },
+  {
+    "model": "base.borrowaddress",
+    "pk": 2,
+    "fields": {
+      "borrow": 2,
+      "address": "Lot 24 C",
+      "city": "Casablanca",
+      "country": "MAROC"
+    }
+  }
+]
