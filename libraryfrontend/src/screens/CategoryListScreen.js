@@ -114,7 +114,7 @@ function CategoryListScreen() {
 
 
             {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
-                <div style={{overflow:"scroll"}}>
+                <div style={{height:'100%', overflow:"scroll"}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{textAlign: "center"}}>
                     <tr>
