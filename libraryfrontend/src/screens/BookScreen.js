@@ -97,7 +97,7 @@ function BookScreen() {
                 <div>
                     <Row>
                         <Col className='p-5'>
-                            <Image src={`${proxy}${book.image}`} alt={book.title} fluid
+                            <Image src={book.image} alt={book.title} fluid
                                    style={{borderRadius: 20, maxHeight: 900}}/>
                         </Col>
                         <Col style={{padding: '2%', textAlign: "center"}}>

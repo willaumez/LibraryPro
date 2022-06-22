@@ -57,7 +57,7 @@ function BuyScreen({book_id, qte}) {
                             <ListGroup.Item key={item.book}>
                                 <Row>
                                     <Col md={2}>
-                                        <Image src={`${proxy}${item.image}`} alt={item.title} fluid rounded/>
+                                        <Image src={item.image} alt={item.title} fluid rounded/>
                                     </Col>
                                     <Col md={3} className="overflow-scroll">
                                         <Link to={`/book/${item.book}`} className="titre">{item.title}</Link>
