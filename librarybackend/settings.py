@@ -187,13 +187,14 @@ STATIC_ROOT = BASE_DIR / 'resources'
 
 AWS_ACCESS_KEY_ID = 'AKIAUQL6NW6DU5QKC5MK'
 AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'libraryprojectg2'
+#AWS_STORAGE_BUCKET_NAME = 'libraryprojectg2'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 #AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
-#PUBLIC_MEDIA_LOCATION = 'media'
+PUBLIC_MEDIA_LOCATION = 'media'
+MEDIA_URL = f""
 #MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
 DEFAULT_FILE_STORAGE = 'base.storage_backends.MediaStorage'
 
@@ -203,3 +204,5 @@ DEFAULT_FILE_STORAGE = 'base.storage_backends.MediaStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS: True
+
+
