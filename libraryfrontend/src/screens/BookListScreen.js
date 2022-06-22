@@ -252,7 +252,7 @@ function BookListScreen({keyword}) {
                         <Form onSubmit={submitHandler}>
                             <Row>
                                 <Col md={4} sm={4}>
-                                    <Card.Img src={`http://localhost:8000${book.image}`}
+                                    <Card.Img src={`/static${book.image}`}
                                               style={{height: 400, borderRadius: '10px'}}/>
                                 </Col>
                                 <Col>

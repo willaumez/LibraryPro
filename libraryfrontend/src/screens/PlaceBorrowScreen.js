@@ -10,7 +10,7 @@ import { CurrentDate, LimitDate} from "../components/DatesTimes";
 import { createBorrow } from "../actions/orderActions";
 import { BORROW_CREATE_RESET } from "../constants/orderConstants";
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function PlaceBorrowScreen() {

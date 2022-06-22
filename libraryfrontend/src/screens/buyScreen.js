@@ -8,7 +8,7 @@ import {addToBuyBag, removeFromBagBuy} from "../actions/bagActions";
 import {LinkContainer} from "react-router-bootstrap";
 
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function BuyScreen({book_id, qte}) {

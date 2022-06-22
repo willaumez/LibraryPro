@@ -8,7 +8,7 @@ import Message from "../components/Message";
 import { createOrder } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function PlaceOrderScreen() {

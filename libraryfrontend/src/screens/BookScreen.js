@@ -12,7 +12,7 @@ import {GetCategory} from "../components/GetCategoryName";
 import {createOrder, addOrdered, listMyOrdered} from "../actions/orderActions";
 
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function BookScreen() {

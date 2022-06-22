@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import {addToBorrowBag, removeFromBagBorrow} from "../actions/bagActions";
 import {LinkContainer} from "react-router-bootstrap";
 
-const proxy = 'http://localhost:8000'
+const proxy = '/static'
 
 
 function BorrowScreen({book_id, qte}) {
