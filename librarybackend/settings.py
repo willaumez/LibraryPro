@@ -194,7 +194,7 @@ AWS_DEFAULT_ACL = None
 AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
 #PUBLIC_MEDIA_LOCATION = 'media'
-MEDIA_URL = ''
+MEDIA_URL = f""
 #MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
 DEFAULT_FILE_STORAGE = 'base.storage_backends.MediaStorage'
 
