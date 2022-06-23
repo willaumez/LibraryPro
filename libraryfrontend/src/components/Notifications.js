@@ -4,16 +4,13 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const notis = (variant, message) => {
-	if (variant === 'info'){
+    if (variant === 'info') {
         toast.info(`${message}`)
-    }
-    else if (variant === 'success'){
+    } else if (variant === 'success') {
         toast.success(`${message}`)
-    }
-    else if (variant === 'danger'){
+    } else if (variant === 'danger') {
         toast.error(`${message}`)
-    }
-    else {
+    } else {
         toast.warning(`${message}`)
     }
 }
@@ -21,20 +18,12 @@ const notis = (variant, message) => {
 
 function Notification({variant, message}) {
     return (
-        <div>{!toast.isActive() ? (<div>
-                {notis(variant, message)}
-                {toast.clearWaitingQueue()}
-            </div>
+        <div>
+            {toast.dismiss()}
+            {notis(variant, message)}
+            {toast.clearWaitingQueue()}
 
-        ):(
-            <div>
-                {toast.dismiss()}
-                {notis(variant, message)}
-                {toast.clearWaitingQueue()}
-            </div>
-        )}
-
-        <ToastContainer position="bottom-right" limit={1}/>
+            <ToastContainer position="bottom-right" limit={1}/>
         </div>
     );
 }

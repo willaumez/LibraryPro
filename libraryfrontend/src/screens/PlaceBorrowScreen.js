@@ -81,7 +81,7 @@ function PlaceBorrowScreen() {
                                         <ListGroup.Item key={index}>
                                             <Row>
                                                 <Col md={2}>
-                                                    <Image src={`${proxy}${item.image}`} alt={item.title} fluid rounded />
+                                                    <Image src={item.image} alt={item.title} fluid rounded />
                                                 </Col>
                                                 <Col>
                                                     <Link to={`/book/${item.book}`} className="titre py-0">{item.title}</Link>
