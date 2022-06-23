@@ -5,6 +5,7 @@ import {Form, Button, Table, Row, Col, Card} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Notification from "../components/Notifications";
 import Paginate from "../components/Paginate";
 import {listBooks, deleteBook, createBook, listBookDetails, updateBook,} from "../actions/bookActions";
 import {listCategories} from "../actions/categoryActions";
@@ -14,10 +15,11 @@ import ReactS3 from "react-s3";
 import {deleteFile} from "react-s3";
 import S3FileUpload from "react-s3/lib/ReactS3";
 import {aws} from "../keys";
-import { Buffer } from "buffer";
+import {Buffer} from "buffer";
 import {Pagination} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import {useParams} from "react-router";
+
 Buffer.from("anything", "base64");
 window.Buffer = window.Buffer || require("buffer").Buffer;
 
@@ -136,6 +138,7 @@ function BookListScreen({keyword}) {
         }
         dispatch(listBookDetails(bookId))
 
+
     }
 
     const insertFileHandler = async (e) => {
@@ -215,16 +218,23 @@ function BookListScreen({keyword}) {
         </Row>
 
             {loadingDelete && <Loader/>}
-            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+            {loadingUpdate && <Loader/>}
+            {loadingDetail && <Loader/>}
+            {loadingCreate && <Loader/>}
+
+            {successCreate && <Notification variant='success' message={successCreate}/>}
+            {successDelete && <Notification variant='success' message={successDelete}/>}
+            {successUpdate && <Notification variant='success' message={successUpdate}/>}
+            {successDetail && <Notification variant='success' message={successDetail}/>}
 
 
-            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
+            {errorCreate && <Notification variant='danger' message={errorCreate}/>}
+            {errorDetail && <Notification variant='danger' message={errorDetail}/>}
+            {errorUpdate && <Notification variant='danger' message={errorUpdate}/>}
 
-            {errorDetail && <Message variant='danger'>{errorDetail}</Message>}
 
-            {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-
-            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
+            {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
                 <div style={{overflow: 'auto', height: '75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead style={{tableLayout: "fixed", textAlign: "center", position: "sticky"}}>
@@ -277,124 +287,124 @@ function BookListScreen({keyword}) {
                     <Modal.Title id="contained-modal-title-vcenter">Edit Book</Modal.Title>
                 </Modal.Header>
 
-                {loadingUpdate && <Loader/>}
-                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
-                        <Form onSubmit={submitHandler}>
-                            <Row>
-                                <Col md={4} sm={4}>
-                                    <Card.Img src={book.image}
-                                              style={{height: 400, borderRadius: '10px'}}/>
-                                </Col>
-                                <Col>
-                                    <Row>
-                                        <Form.Group className="mb-4" controlid='title'>
-                                            <Form.Label>Title: </Form.Label>
-                                            <Form.Control
-                                                type='name' placeholder='Enter Title'
-                                                value={title}
-                                                onChange={(e) => setTitle(e.target.value)}>
+                    {loadingDetail ? <Loader/> : errorDetail ?
+                        <Notification variant='danger' message={errorDetail}/> : (
+                            <Form onSubmit={submitHandler}>
+                                <Row>
+                                    <Col md={4} sm={4}>
+                                        <Card.Img src={book.image}
+                                                  style={{height: 400, borderRadius: '10px'}}/>
+                                    </Col>
+                                    <Col>
+                                        <Row>
+                                            <Form.Group className="mb-4" controlid='title'>
+                                                <Form.Label>Title: </Form.Label>
+                                                <Form.Control
+                                                    type='name' placeholder='Enter Title'
+                                                    value={title}
+                                                    onChange={(e) => setTitle(e.target.value)}>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Row>
+                                        <Row>
+                                            <Form.Group className="mb-4" controlid='author'>
+                                                <Form.Label>Author: </Form.Label>
+                                                <Form.Control
+                                                    type='name' placeholder='Enter Author'
+                                                    value={author}
+                                                    onChange={(e) => setAuthor(e.target.value)}>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Row>
+                                        <Row>
+                                            <Form.Group className="mb-4" controlid='isbn'>
+                                                <Form.Label>ISBN: </Form.Label>
+                                                <Form.Control
+                                                    type='name' placeholder='Enter Isbn'
+                                                    value={isbn}
+                                                    onChange={(e) => setIsbn(e.target.value)}>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Row>
+                                        <Row>
+                                            <Form.Label>Select Category:</Form.Label>
+                                            <Form.Select aria-label="Default select example" controlid='category'
+                                                         defaultValue={category[0]}
+                                                         onChange={(e) => setCategory(e.target.value)}
+                                                         style={{width: '50%', margin: "auto"}}>
+                                                <option>{book.categoryName}</option>
+                                                {categories.map(category => (
+                                                    <option key={category._id}
+                                                            value={category._id}>{category.nom}</option>
+                                                ))}
+                                            </Form.Select>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                                <Row style={{marginTop: 20}}>
+                                    <Col>
+                                        <Form.Group className="mb-4" controlid='date_pub'>
+                                            <Form.Label>Publication Date:</Form.Label>
+                                            <Form.Control required
+                                                          type='date' placeholder='Enter Publication Date'
+                                                          value={date_pub.substring(0, 10)}
+                                                          timeFormat="YYYY-MM-DD HH:mm"
+                                                          onChange={(e) => setDate_pub(e.target.value)}>
                                             </Form.Control>
                                         </Form.Group>
-                                    </Row>
-                                    <Row>
-                                        <Form.Group className="mb-4" controlid='author'>
-                                            <Form.Label>Author: </Form.Label>
-                                            <Form.Control
-                                                type='name' placeholder='Enter Author'
-                                                value={author}
-                                                onChange={(e) => setAuthor(e.target.value)}>
-                                            </Form.Control>
-                                        </Form.Group>
-                                    </Row>
-                                    <Row>
-                                        <Form.Group className="mb-4" controlid='isbn'>
-                                            <Form.Label>ISBN: </Form.Label>
-                                            <Form.Control
-                                                type='name' placeholder='Enter Isbn'
-                                                value={isbn}
-                                                onChange={(e) => setIsbn(e.target.value)}>
-                                            </Form.Control>
-                                        </Form.Group>
-                                    </Row>
-                                    <Row>
-                                        <Form.Label>Select Category:</Form.Label>
-                                        <Form.Select aria-label="Default select example" controlid='category'
-                                                     defaultValue={category[0]}
-                                                     onChange={(e) => setCategory(e.target.value)}
-                                                     style={{width: '50%', margin: "auto"}}>
-                                            <option>{book.categoryName}</option>
-                                            {categories.map(category => (
-                                                <option key={category._id} value={category._id}>{category.nom}</option>
-                                            ))}
-                                        </Form.Select>
-                                    </Row>
-                                </Col>
-                            </Row>
-                            <Row style={{marginTop: 20}}>
-                                <Col>
-                                    <Form.Group className="mb-4" controlid='date_pub'>
-                                        <Form.Label>Publication Date:</Form.Label>
-                                        <Form.Control required
-                                                      type='date' placeholder='Enter Publication Date'
-                                                      value={date_pub.substring(0, 10)}
-                                                      timeFormat="YYYY-MM-DD HH:mm"
-                                                      onChange={(e) => setDate_pub(e.target.value)}>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-4" controlid='image'>
-                                        <Form.Label> Image:</Form.Label>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group className="mb-4" controlid='image'>
+                                            <Form.Label> Image:</Form.Label>
 
-                                        <Form.Control type='file' placeholder='Choose File' custom='true'
-                                                      onChange={uploadFileHandler}>
-                                        </Form.Control>
-                                        {uploading && <Loader/>}
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Form.Group className="mb-4" controlid='qte'>
-                                        <Form.Label>Quantity: </Form.Label>
+                                            <Form.Control type='file' placeholder='Choose File' custom='true'
+                                                          onChange={uploadFileHandler}>
+                                            </Form.Control>
+                                            {uploading && <Loader/>}
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <Form.Group className="mb-4" controlid='qte'>
+                                            <Form.Label>Quantity: </Form.Label>
+                                            <Form.Control
+                                                type='number' placeholder='Enter Quantity'
+                                                value={qte}
+                                                onChange={(e) => setQte(e.target.value)}>
+                                            </Form.Control>
+                                        </Form.Group>
+                                    </Col>
+                                    <Col>
+                                        <Form.Group className="mb-4" controlid='price'>
+                                            <Form.Label>Price: </Form.Label>
+                                            <Form.Control
+                                                type='number' placeholder='Enter Price'
+                                                value={price}
+                                                onChange={(e) => setPrice(e.target.value)}>
+                                            </Form.Control>
+                                        </Form.Group>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Form.Group className="mb-4" controlid='description'>
+                                        <Form.Label>Description: </Form.Label>
                                         <Form.Control
-                                            type='number' placeholder='Enter Quantity'
-                                            value={qte}
-                                            onChange={(e) => setQte(e.target.value)}>
+                                            type='name' placeholder='Enter Description'
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}>
                                         </Form.Control>
                                     </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-4" controlid='price'>
-                                        <Form.Label>Price: </Form.Label>
-                                        <Form.Control
-                                            type='number' placeholder='Enter Price'
-                                            value={price}
-                                            onChange={(e) => setPrice(e.target.value)}>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Form.Group className="mb-4" controlid='description'>
-                                    <Form.Label>Description: </Form.Label>
-                                    <Form.Control
-                                        type='name' placeholder='Enter Description'
-                                        value={description}
-                                        onChange={(e) => setDescription(e.target.value)}>
-                                    </Form.Control>
-                                </Form.Group>
-                            </Row>
+                                </Row>
 
-                            <Button type='submit' variant='success'
-                                    style={{float: "right", borderRadius: 10, marginTop: 30}}> Update </Button>
-                            <Button onClick={handleClose} variant='success'
-                                    style={{float: "left", borderRadius: 10, marginTop: 30}}> Close </Button>
+                                <Button type='submit' variant='success'
+                                        style={{float: "right", borderRadius: 10, marginTop: 30}}> Update </Button>
+                                <Button onClick={handleClose} variant='success'
+                                        style={{float: "left", borderRadius: 10, marginTop: 30}}> Close </Button>
 
-                        </Form>
-                    )}
+                            </Form>
+                        )}
 
 
                 </Modal.Body>
@@ -503,11 +513,11 @@ function BookListScreen({keyword}) {
                             </Row>
                             <Row>
                                 <Form.Group className="mb-4" controlid='image'>
-                                        <Form.Label> Image:</Form.Label>
-                                        <Form.Control type='file' placeholder='Choose File'
-                                                      onChange={insertFileHandler}>
-                                        </Form.Control>
-                                    </Form.Group>
+                                    <Form.Label> Image:</Form.Label>
+                                    <Form.Control type='file' placeholder='Choose File'
+                                                  onChange={insertFileHandler}>
+                                    </Form.Control>
+                                </Form.Group>
                             </Row>
 
                             <Button type='submit' variant='success'

@@ -4,12 +4,16 @@ import {Form, Button, Row, Col} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Notification from "../components/Notifications";
 import { login } from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 
 function LoginScreen() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorLogin, setErrorLogin] = useState('')
 
     const dispatch = useDispatch()
 
@@ -25,18 +29,19 @@ function LoginScreen() {
         if (userInfo){
             navigate(redirect);
         }
-    },[navigate, userInfo, redirect])
+    },[navigate, userInfo, redirect, error])
 
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
+
     }
 
     return(
         <FormContainer>
             <h1 style={{marginTop:'5%'}}>Login</h1>
+            {error && <Notification variant='danger' message={error}/>}
 
-            {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader/>}
 
             <Form onSubmit={submitHandler}>
