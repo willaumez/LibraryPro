@@ -8,6 +8,7 @@ import Message from "../components/Message";
 import { listOrders, deleteOrder } from "../actions/orderActions";
 import { USER_UPDATE_RESET, USER_CREATE_RESET, } from "../constants/userConstants";
 import { Modal } from "react-bootstrap";
+import Notification from "../components/Notifications";
 
 function BuyingListScreen() {
     const navigate = useNavigate();
@@ -47,10 +48,16 @@ function BuyingListScreen() {
 
     return(
         <div>
-            {loadingDelete && <Loader />}
-            {errorDelete && <Message variant='danger'>{errorDelete}</Message> }
+            {loadingDelete && <Loader/>}
+            {loading && <Loader/>}
+            {successDelete && <Notification variant='success' message='Delete Success'/>}
 
-            {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message> ) : (
+
+            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
+            {error && <Notification variant='danger' message={error}/>}
+
+
+            {loading ? (<Loader />) : error ? (<Notification variant='danger' message={error}/> ) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>

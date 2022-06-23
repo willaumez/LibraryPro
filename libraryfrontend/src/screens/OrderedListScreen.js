@@ -8,6 +8,7 @@ import {listMyOrdered, listOrdered} from "../actions/orderActions";
 import { deleteOrdered } from "../actions/orderActions";
 import {deleteUser, getUserDetails, listUsers} from "../actions/userActions";
 import {USER_UPDATE_RESET} from "../constants/userConstants";
+import Notification from "../components/Notifications";
 
 function OrderedListScreen() {
     const navigate = useNavigate();
@@ -49,9 +50,16 @@ function OrderedListScreen() {
 
     return (
         <div>
+
             {loadingDelete && <Loader/>}
-            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
-            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
+            {loading && <Loader/>}
+            {successDelete && <Notification variant='success' message='Delete Success'/>}
+
+
+            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
+            {error && <Notification variant='danger' message={error}/>}
+
+            {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>

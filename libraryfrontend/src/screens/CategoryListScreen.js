@@ -8,6 +8,7 @@ import Message from "../components/Message";
 import {Modal} from "react-bootstrap";
 import {deleteCategory, listCategories, listCategoryDetails, updateCategory, createCategory} from "../actions/categoryActions";
 import {listBooks} from "../actions/bookActions";
+import Notification from "../components/Notifications";
 
 
 function CategoryListScreen() {
@@ -106,14 +107,23 @@ function CategoryListScreen() {
                 </Col>
             </Row>
 
-            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+            {loadingUpdate && <Loader/>}
+            {loadingDetail && <Loader/>}
+            {loadingCreate && <Loader/>}
+            {loading && <Loader/>}
 
-            {errorDetail && <Message variant='danger'>{errorDetail}</Message>}
+            {successCreate && <Notification variant='success' message='Create Success'/>}
+            {successDelete && <Notification variant='success' message='Delete Success'/>}
+            {successUpdate && <Notification variant='success' message='Update Success'/>}
+            {successDetail && <Notification variant='success' message='Detail Success'/>}
 
-            {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
+            {errorCreate && <Notification variant='danger' message={errorCreate}/>}
+            {errorDetail && <Notification variant='info' message={errorDetail}/>}
+            {errorUpdate && <Notification variant='warning' message={errorUpdate}/>}
+            {error && <Notification variant='warning' message={error}/>}
 
-            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
+            {loading ? (<Loader/>) : error ? (<Notification variant='warning' message={error}/>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
@@ -154,7 +164,7 @@ function CategoryListScreen() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='warning' message={errorDetail}/> : (
                         <Form onSubmit={submitHandler}>
                             <Row>
                                 <Form.Group className="mb-4" controlId='nom'>
@@ -198,7 +208,7 @@ function CategoryListScreen() {
 
                 {loadingCreate && <Loader/>}
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='warning' message={errorDetail}/> : (
                         <Form onSubmit={submitCreateHandler}>
                             <Row>
                                 <Form.Group className="mb-4" controlId='nom'>

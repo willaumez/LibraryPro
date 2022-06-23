@@ -222,16 +222,16 @@ function BookListScreen({keyword}) {
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
 
-            {successCreate && <Notification variant='success' message='Delete Success'/>}
+            {successCreate && <Notification variant='success' message='Create Success'/>}
             {successDelete && <Notification variant='success' message='Delete Success'/>}
-            {successUpdate && <Notification variant='success' message='Delete Success'/>}
-            {successDetail && <Notification variant='success' message='Delete Success'/>}
+            {successUpdate && <Notification variant='success' message='Update Success'/>}
+            {successDetail && <Notification variant='success' message='Detail Success'/>}
 
 
             {errorDelete && <Notification variant='danger' message={errorDelete}/>}
             {errorCreate && <Notification variant='danger' message={errorCreate}/>}
-            {errorDetail && <Notification variant='danger' message={errorDetail}/>}
-            {errorUpdate && <Notification variant='danger' message={errorUpdate}/>}
+            {errorDetail && <Notification variant='info' message={errorDetail}/>}
+            {errorUpdate && <Notification variant='warning' message={errorUpdate}/>}
 
 
             {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
@@ -421,7 +421,7 @@ function BookListScreen({keyword}) {
 
                 {loadingCreate && <Loader/>}
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='danger' message={errorDetail}/> : (
                         <Form onSubmit={submitCreateHandler}>
                             <Row>
                                 <Col>

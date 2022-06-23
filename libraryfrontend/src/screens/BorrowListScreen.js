@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {listBorrows, deleteBorrow } from "../actions/orderActions";
+import Notification from "../components/Notifications";
 
 
 function BorrowListScreen() {
@@ -44,11 +45,14 @@ function BorrowListScreen() {
 
     return(
         <div>
-            {loadingDelete && <Loader />}
-            {errorDelete && <Message variant='danger'>{errorDelete}</Message> }
 
+            {loadingDelete && <Loader/>}
+            {successDelete && <Notification variant='success' message='Delete Borrowing Success'/>}
 
-            {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message> ) : (
+            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
+            {error && <Notification variant='danger' message={error}/>}
+
+            {loading ? (<Loader />) : error ? (<Notification variant='danger' message={error}/>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>

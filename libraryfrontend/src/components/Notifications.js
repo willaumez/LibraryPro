@@ -14,7 +14,7 @@ const notis = (variant, message) => {
         toast.error(`${message}`)
     }
     else {
-        toast.error(`${message}`)
+        toast.warning(`${message}`)
     }
 }
 

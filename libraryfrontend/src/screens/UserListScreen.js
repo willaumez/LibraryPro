@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import {listUsers, deleteUser, getUserDetails, updateUser, createUser, signup,} from "../actions/userActions";
 import {USER_UPDATE_RESET, USER_CREATE_RESET,} from "../constants/userConstants";
 import {Modal} from "react-bootstrap";
+import Notification from "../components/Notifications";
 
 function UserListScreen() {
     const navigate = useNavigate();
@@ -113,10 +114,23 @@ function UserListScreen() {
 
     return (
         <div>
-            {message && <Message variant='danger'>{message}</Message>}
+
             {loadingUpdate && <Loader/>}
-            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
-             {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+            {loading && <Loader/>}
+            {loadingDetail && <Loader/>}
+            {loadingCreate && <Loader/>}
+
+            {successCreate && <Notification variant='success' message='Create User Success'/>}
+            {successDelete && <Notification variant='success' message='Delete User Success'/>}
+            {successUpdate && <Notification variant='success' message='Update User Success'/>}
+
+
+            {errorCreate && <Notification variant='danger' message={errorCreate}/>}
+            {errorDetails && <Notification variant='info' message={errorDetails}/>}
+            {errorUpdate && <Notification variant='warning' message={errorUpdate}/>}
+            {error && <Notification variant='warning' message={error}/>}
+
+            {message && <Notification variant='warning' message={message}/>}
 
             <Row className='align-items-center'>
                 <Col className='text-center'>
@@ -127,7 +141,7 @@ function UserListScreen() {
                 </Col>
             </Row>
 
-            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
+            {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
@@ -174,7 +188,7 @@ function UserListScreen() {
                 </Modal.Header>
                 <Modal.Body>
 
-                    {loadingDetail ? <Loader/> : errorDetails ? <Message variant='danger'>{errorDetails}</Message> : (
+                    {loadingDetail ? <Loader/> : errorDetails ? <Notification variant='info' message={errorDetails}/> : (
                         <Form onSubmit={submitHandler}>
                             <Form.Group className="mb-4" controlId='name'>
                                 <Form.Label>Name</Form.Label>
