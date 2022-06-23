@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import borrow from "./borrow";
-
+import 'react-notifications/lib/notifications.css';
 import './index.css'
 import './bootstrap.min.css';
 import App from './App';

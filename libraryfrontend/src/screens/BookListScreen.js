@@ -471,16 +471,6 @@ function BookListScreen({keyword}) {
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-4" controlid='image'>
-                                        <Form.Label> Image:</Form.Label>
-                                        <Form.Control type='file' placeholder='Choose File'
-                                                      onChange={insertFileHandler}>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
                                     <Form.Group className="mb-4" controlid='qte'>
                                         <Form.Label>Quantity: </Form.Label>
                                         <Form.Control
@@ -510,6 +500,14 @@ function BookListScreen({keyword}) {
                                         onChange={(e) => setDescription(e.target.value)}>
                                     </Form.Control>
                                 </Form.Group>
+                            </Row>
+                            <Row>
+                                <Form.Group className="mb-4" controlid='image'>
+                                        <Form.Label> Image:</Form.Label>
+                                        <Form.Control type='file' placeholder='Choose File'
+                                                      onChange={insertFileHandler}>
+                                        </Form.Control>
+                                    </Form.Group>
                             </Row>
 
                             <Button type='submit' variant='success'
