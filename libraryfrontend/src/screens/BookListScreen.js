@@ -23,14 +23,7 @@ window.Buffer = window.Buffer || require("buffer").Buffer;
 
 const config = {
     bucketName: aws.AWS_STORAGE_BUCKET_NAME,
-    dirName: '', /* optional */
-    region: aws.AWS_S3_FILE_REGION,
-    accessKeyId: aws.AWS_ACCESS_KEY_ID,
-    secretAccessKey: aws.AWS_SECRET_ACCESS_KEY,
-}
-
-const configDelete = {
-    bucketName: aws.AWS_STORAGE_BUCKET_NAME,
+    dirName: aws.AWS_S3_FILE_ALBUM, /* optional */
     region: aws.AWS_S3_FILE_REGION,
     accessKeyId: aws.AWS_ACCESS_KEY_ID,
     secretAccessKey: aws.AWS_SECRET_ACCESS_KEY,
@@ -163,7 +156,7 @@ function BookListScreen({keyword}) {
         const imageDelete = image.split('https://libraryprojectg2.s3.amazonaws.com/media/')[1]
         if (window.confirm('Are you sure you want to delete this book ?')) {
             S3FileUpload
-                .deleteFile(imageDelete, configDelete)
+                .deleteFile(imageDelete, config)
                 .then(response => console.log(response))
                 .catch(err => console.error(err))
 
