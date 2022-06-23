@@ -222,10 +222,10 @@ function BookListScreen({keyword}) {
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
 
-            {successCreate && <Notification variant='success' message='Create Success'/>}
-            {successDelete && <Notification variant='success' message='Delete Success'/>}
-            {successUpdate && <Notification variant='success' message='Update Success'/>}
-            {successDetail && <Notification variant='success' message='Detail Success'/>}
+            {successCreate && <Notification variant='success' message='Create Book Success'/>}
+            {successDelete && <Notification variant='success' message='Delete Book Success'/>}
+            {successUpdate && <Notification variant='success' message='Update Book Success'/>}
+            {successDetail && <Notification variant='success' message='Detail Book Success'/>}
 
 
             {errorDelete && <Notification variant='danger' message={errorDelete}/>}

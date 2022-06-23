@@ -50,7 +50,7 @@ function BuyingListScreen() {
         <div>
             {loadingDelete && <Loader/>}
             {loading && <Loader/>}
-            {successDelete && <Notification variant='success' message='Delete Success'/>}
+            {successDelete && <Notification variant='success' message='Delete Buying Success'/>}
 
 
             {errorDelete && <Notification variant='danger' message={errorDelete}/>}

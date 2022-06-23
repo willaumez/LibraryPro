@@ -112,10 +112,10 @@ function CategoryListScreen() {
             {loadingCreate && <Loader/>}
             {loading && <Loader/>}
 
-            {successCreate && <Notification variant='success' message='Create Success'/>}
-            {successDelete && <Notification variant='success' message='Delete Success'/>}
-            {successUpdate && <Notification variant='success' message='Update Success'/>}
-            {successDetail && <Notification variant='success' message='Detail Success'/>}
+            {successCreate && <Notification variant='success' message='Create Category Success'/>}
+            {successDelete && <Notification variant='success' message='Delete Category Success'/>}
+            {successUpdate && <Notification variant='success' message='Update Category Success'/>}
+            {successDetail && <Notification variant='success' message='Detail Category Success'/>}
 
 
             {errorCreate && <Notification variant='danger' message={errorCreate}/>}
