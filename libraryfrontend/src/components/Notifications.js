@@ -22,8 +22,7 @@ function Notification({variant, message}) {
             {toast.dismiss()}
             {notis(variant, message)}
             {toast.clearWaitingQueue()}
-
-            <ToastContainer position="bottom-right" limit={1}/>
+            <ToastContainer position="bottom-right" limit={3}/>
         </div>
     );
 }
