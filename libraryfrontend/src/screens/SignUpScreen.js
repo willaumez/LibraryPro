@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {login, signup} from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
+import Notification from "../components/Notifications";
 
 function SignUpScreen() {
     const [name, setName] = useState('')
@@ -46,9 +47,9 @@ function SignUpScreen() {
     return(
         <FormContainer>
             <h1 style={{marginTop:'5%'}}>Sign Up</h1>
-            {message && <Message variant='danger'>{message}</Message>}
+            {message && <Notification variant='warning' message={message}/>}
 
-            {error && <Message variant='danger'>{error}</Message>}
+            {error && <Notification variant='danger' message={error}/>}
             {loading && <Loader/>}
 
             <Form onSubmit={submitHandler}>

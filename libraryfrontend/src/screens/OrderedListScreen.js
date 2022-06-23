@@ -53,7 +53,7 @@ function OrderedListScreen() {
 
             {loadingDelete && <Loader/>}
             {loading && <Loader/>}
-            {successDelete && <Notification variant='success' message='Delete Success'/>}
+            {successDelete && <Notification variant='success' message='Delete Ordered Success'/>}
 
 
             {errorDelete && <Notification variant='danger' message={errorDelete}/>}

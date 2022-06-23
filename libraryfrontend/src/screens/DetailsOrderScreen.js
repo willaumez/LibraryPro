@@ -9,6 +9,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { getOrderDetails, payOrder, deliverOrder } from "../actions/orderActions";
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../constants/orderConstants";
 import { listMyOrders } from "../actions/orderActions";
+import Notification from "../components/Notifications";
 
 const proxy = '/static'
 
@@ -75,8 +76,7 @@ function DetailsOrderScreen() {
     }
 
 
-
-    return loading ? ( <Loader/> ) : error ? ( <Message variant='danger'>{error}</Message> ):
+    return loading ? ( <Loader/> ) : error ? ( <Notification variant='danger' message={error}/> ):
         (
             <div style={{marginBottom:'8%'}}> <h1> Order:  {order._id} </h1>
 
@@ -143,7 +143,7 @@ function DetailsOrderScreen() {
                                             <ListGroup.Item key={index}>
                                                 <Row style={{textAlign:"center"}}>
                                                     <Col md={2}>
-                                                        <Image src={`${proxy}${item.image}`} alt={item.title} fluid rounded />
+                                                        <Image src={item.image} alt={item.title} fluid rounded />
                                                     </Col>
                                                     <Col>
                                                         <Link to={`/book/${item.book}`} className="titre py-0">{item.title}</Link>

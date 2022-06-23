@@ -1,10 +1,12 @@
 import React from "react";
 import {Row, Col, Container} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
+import Notification from "../components/Notifications";
 
 function About() {
     return (
         <Container>
+
             <Row className="justify-content-md-center">
                 <Col xs lg="7" className="alert alert-success text-center" style={{margin: 50}}><h3>About-Us</h3></Col>
             </Row>

@@ -10,6 +10,7 @@ import Message from "../components/Message";
 import {CurrentDate, LimitDate} from "../components/DatesTimes";
 import {GetCategory} from "../components/GetCategoryName";
 import {createOrder, addOrdered, listMyOrdered} from "../actions/orderActions";
+import Notification from "../components/Notifications";
 
 
 const proxy = '/static'
@@ -93,7 +94,7 @@ function BookScreen() {
                 className="fa fa-undo" aria-hidden="true"> </i> GO Back</Link>
 
 
-            {loading ? <Loader/> : error ? <Message variant="danger"> {error} </Message> : (
+            {loading ? <Loader/> : error ? <Notification variant='danger' message={error}/> : (
                 <div>
                     <Row>
                         <Col className='p-5'>
@@ -291,8 +292,8 @@ function BookScreen() {
                                 <ListGroup.Item>
                                     <h4>Write a review:</h4>
                                     {loadingBookReview && <Loader/>}
-                                    {successBookReview && <Message variant='success'>Review Submitted</Message>}
-                                    {errorBookReview && <Message variant='danger'>{errorBookReview}</Message>}
+                                    {successBookReview && <Notification variant='success' message={successBookReview}/>}
+                                    {errorBookReview && <Notification variant='danger' message={errorBookReview}/>}
                                     {userInfo ? (
                                         <Form onSubmit={submitHandler}>
                                             <Form.Group controlId='comment'>

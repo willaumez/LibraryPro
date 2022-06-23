@@ -9,6 +9,7 @@ import {useLocation, useParams} from "react-router-dom";
 import {listCategoryDetails} from "../actions/categoryActions";
 import SearchCategory from "../components/SearchCategory";
 import Paginate from "../components/Paginate";
+import Notification from "../components/Notifications";
 
 function HomeScreen() {
     const dispatch = useDispatch()
@@ -48,7 +49,7 @@ function HomeScreen() {
                 <h1>BOOKS</h1>
             )}
             {loading ? <Loader/>
-                : error ? <Message variant="danger">{error}</Message>
+                : error ? <Notification variant='warning' message={error}/>
                     :
                     <div>
                         <Row>

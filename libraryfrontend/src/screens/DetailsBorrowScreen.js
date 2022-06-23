@@ -7,6 +7,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getBorrowDetails, listMyBorrows, takeBorrow, returnBorrow} from "../actions/orderActions";
 import { BORROW_TAKE_RESET, BORROW_RETURN_RESET  } from "../constants/orderConstants";
+import Notification from "../components/Notifications";
 
 const proxy = '/static'
 
@@ -47,8 +48,7 @@ function DetailsBorrowScreen() {
         dispatch(returnBorrow(borrow))
     }
 
-
-    return loading ? ( <Loader/> ) : error ? ( <Message variant='danger'>{error}</Message> ): (
+    return loading ? ( <Loader/> ) : error ? ( <Notification variant='warning' message={error} />): (
         <div style={{marginBottom:'8%'}}>  <h1> Borrow:  {borrow._id} </h1>
             <Row>
                     <Col>
@@ -113,7 +113,7 @@ function DetailsBorrowScreen() {
                                         <ListGroup.Item key={index}>
                                             <Row style={{textAlign:"center"}}>
                                                 <Col md={2}>
-                                                    <Image src={`${proxy}${item.image}`} alt={item.title} fluid rounded />
+                                                    <Image src={item.image} alt={item.title} fluid rounded />
                                                 </Col>
                                                 <Col>
                                                     <Link to={`/book/${item.book}`} className="titre py-0">{item.title}</Link>

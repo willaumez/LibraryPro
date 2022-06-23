@@ -19,7 +19,7 @@ def getBooks(request):
     books = Book.objects.filter(category=cate) if cate != None else Book.objects.filter(title__icontains=query)
 
     page = request.query_params.get('page')
-    paginator = Paginator(books, 9)
+    paginator = Paginator(books, 8)
 
     try:
         books = paginator.page(page)
