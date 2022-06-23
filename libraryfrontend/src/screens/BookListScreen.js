@@ -186,7 +186,7 @@ function BookListScreen({keyword}) {
             {loadingDelete && <Loader/>}
             {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
 
-            {loadingCreate && <Loader/>}
+
             {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 
             {errorDetail && <Message variant='danger'>{errorDetail}</Message>}
@@ -194,9 +194,9 @@ function BookListScreen({keyword}) {
             {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
             {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
-                <div>
+                <div style={{overflow:'auto', height:'75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
-                        <thead style={{textAlign: "center"}}>
+                        <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
                         <tr>
                             <th>TITLE</th>
                             <th>AUTHOR</th>
@@ -207,7 +207,7 @@ function BookListScreen({keyword}) {
 
                         </tr>
                         </thead>
-                        <tbody style={{textAlign: "center"}}>
+                        <tbody style={{overflow:'auto', textAlign:"center"}}>
                         {books.map(book => (
                             <tr key={book._id}>
                                 <td>{book.title}</td>
@@ -376,8 +376,7 @@ function BookListScreen({keyword}) {
                     <Modal.Title id="contained-modal-title-vcenter">Create Book</Modal.Title>
                 </Modal.Header>
 
-                {loadingUpdate && <Loader/>}
-                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
+                {loadingCreate && <Loader/>}
                 <Modal.Body>
                     {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
                         <Form onSubmit={submitCreateHandler}>

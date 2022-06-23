@@ -114,16 +114,16 @@ function CategoryListScreen() {
 
 
             {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
-                <div style={{height:'100%', overflow:"scroll"}}>
+                <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
-                    <thead style={{textAlign: "center"}}>
+                    <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
                     <tr>
                         <th>NAME</th>
                         <th>DATE-CREATE</th>
                         <th>DESCRIPTION</th>
                     </tr>
                     </thead>
-                    <tbody style={{textAlign: "center"}}>
+                    <tbody style={{overflow:'auto', textAlign:"center"}}>
                     {categories.map(category => (
                         <tr key={category._id}>
                             <td>{category.nom}</td>

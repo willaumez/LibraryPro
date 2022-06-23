@@ -51,9 +51,9 @@ function BuyingListScreen() {
             {errorDelete && <Message variant='danger'>{errorDelete}</Message> }
 
             {loading ? (<Loader />) : error ? (<Message variant='danger'>{error}</Message> ) : (
-                <div>
+                <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
-                    <thead style={{textAlign:"center"}}>
+                    <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
                         <tr>
                             <th>USER-NAME</th>
                             <th>DATE</th>
@@ -62,7 +62,7 @@ function BuyingListScreen() {
                             <th>DELIVERED</th>
                         </tr>
                     </thead>
-                    <tbody style={{textAlign:"center"}}>
+                    <tbody style={{overflow:'auto', textAlign:"center"}}>
                         {orders.map(order => (
                             <tr key={order._id}>
                                 <td>{order.user && order.user.name}</td>

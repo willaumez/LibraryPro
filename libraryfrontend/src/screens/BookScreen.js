@@ -98,7 +98,7 @@ function BookScreen() {
                     <Row>
                         <Col className='p-5'>
                             <Image src={book.image} alt={book.title} fluid
-                                   style={{borderRadius: 20, maxHeight: 900}}/>
+                                   style={{borderRadius: 20, maxHeight: 950}}/>
                         </Col>
                         <Col style={{padding: '2%', textAlign: "center"}}>
                             <Row>

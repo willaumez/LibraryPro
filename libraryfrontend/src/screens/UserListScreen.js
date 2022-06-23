@@ -114,9 +114,9 @@ function UserListScreen() {
     return (
         <div>
             {message && <Message variant='danger'>{message}</Message>}
-            {loading && <Loader/>}
-            {loadingCreate && <Loader/>}
+            {loadingUpdate && <Loader/>}
             {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
+             {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
             <Row className='align-items-center'>
                 <Col className='text-center'>
@@ -128,16 +128,16 @@ function UserListScreen() {
             </Row>
 
             {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
-                <div>
+                <div style={{overflow:'auto', height:'75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
-                        <thead style={{textAlign: "center"}}>
+                        <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
                         <tr>
                             <th>NAME</th>
                             <th>EMAIL</th>
                             <th>ADMIN</th>
                         </tr>
                         </thead>
-                        <tbody style={{textAlign: "center"}}>
+                        <tbody style={{overflow:'auto', textAlign:"center"}}>
                         {users.map(user => (
                             <tr key={user._id}>
                                 <td>{user.name}</td>
@@ -173,8 +173,6 @@ function UserListScreen() {
                     <Modal.Title id="contained-modal-title-vcenter">Edit User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {loadingUpdate && <Loader/>}
-                    {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
                     {loadingDetail ? <Loader/> : errorDetails ? <Message variant='danger'>{errorDetails}</Message> : (
                         <Form onSubmit={submitHandler}>
@@ -231,7 +229,6 @@ function UserListScreen() {
                     <Modal.Title id="contained-modal-title-vcenter">Create User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
                     {loadingCreate ? <Loader/> : (
                         <Form onSubmit={submitCreateHandler}>
                             <Form.Group className="mb-4" controlId='name'>

@@ -125,7 +125,7 @@ div.scrollmenu Button {
     border-top: 1px solid green;
 }
 
-div.scrollmenu Button:focus{
+div.scrollmenu Button:focus {
     background-color: green;
 }
 
@@ -133,7 +133,7 @@ div.scrollmenu a:hover {
     background-color: #777;
 }
 
-img{
+img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -141,28 +141,6 @@ img{
 
 
 
-Table {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-}
-
-thead {
-    flex: 0 0 auto;
-}
-
-tbody {
-    flex: 1 1 auto;
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-tr {
-    width: 100%;
-    display: table;
-    table-layout: fixed;
-}
 
 
 
