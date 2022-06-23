@@ -22,10 +22,13 @@ const notis = (variant, message) => {
 function Notification({variant, message}) {
     return (
         <div>{!toast.isActive() ? (
-            notis(variant, message)
+            (toast.dismiss())
+            (notis(variant, message))
+            (toast.clearWaitingQueue())
         ):(
             (toast.dismiss())
             (notis(variant, message))
+            (toast.clearWaitingQueue())
         )}
 
         <ToastContainer position="bottom-right" limit={1}/>
