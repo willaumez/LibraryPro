@@ -110,7 +110,6 @@ function CategoryListScreen() {
             {loadingUpdate && <Loader/>}
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
-            {loading && <Loader/>}
 
             {successCreate && <Notification variant='success' message='Create Category Success'/>}
             {successDelete && <Notification variant='success' message='Delete Category Success'/>}

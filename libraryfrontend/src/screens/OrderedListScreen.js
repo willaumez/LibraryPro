@@ -52,7 +52,6 @@ function OrderedListScreen() {
         <div>
 
             {loadingDelete && <Loader/>}
-            {loading && <Loader/>}
             {successDelete && <Notification variant='success' message='Delete Ordered Success'/>}
 
 

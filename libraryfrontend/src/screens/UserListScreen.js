@@ -116,7 +116,6 @@ function UserListScreen() {
         <div>
 
             {loadingUpdate && <Loader/>}
-            {loading && <Loader/>}
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
 

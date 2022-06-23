@@ -49,7 +49,6 @@ function BuyingListScreen() {
     return(
         <div>
             {loadingDelete && <Loader/>}
-            {loading && <Loader/>}
             {successDelete && <Notification variant='success' message='Delete Buying Success'/>}
 
 
