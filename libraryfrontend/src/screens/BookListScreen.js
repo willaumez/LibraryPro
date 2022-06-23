@@ -10,14 +10,36 @@ import {listBooks, deleteBook, createBook, listBookDetails, updateBook,} from ".
 import {listCategories} from "../actions/categoryActions";
 import {Modal} from "react-bootstrap";
 import {BOOK_CREATE_RESET, BOOK_DETAILS_RESET, BOOK_UPDATE_RESET,} from "../constants/bookConstants";
+import ReactS3 from "react-s3";
+import {deleteFile} from "react-s3";
+import S3FileUpload from "react-s3/lib/ReactS3";
+import {aws} from "../keys";
+import { Buffer } from "buffer";
 import {Pagination} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import {useParams} from "react-router";
+Buffer.from("anything", "base64");
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
+const config = {
+    bucketName: aws.AWS_STORAGE_BUCKET_NAME,
+    dirName: '', /* optional */
+    region: aws.AWS_S3_FILE_REGION,
+    accessKeyId: aws.AWS_ACCESS_KEY_ID,
+    secretAccessKey: aws.AWS_SECRET_ACCESS_KEY,
+}
+
+const configDelete = {
+    bucketName: aws.AWS_STORAGE_BUCKET_NAME,
+    region: aws.AWS_S3_FILE_REGION,
+    accessKeyId: aws.AWS_ACCESS_KEY_ID,
+    secretAccessKey: aws.AWS_SECRET_ACCESS_KEY,
+}
+
 
 function BookListScreen({keyword}) {
     const navigate = useNavigate();
     const [bookId, setBookId] = useState(false)
-    //let keyword = '?keyword=&page=3'
 
     const dispatch = useDispatch()
 
@@ -124,13 +146,29 @@ function BookListScreen({keyword}) {
     }
 
     const insertFileHandler = async (e) => {
+        ReactS3.uploadFile(e.target.files[0], config)
+            .then((data) => {
+                console.log(data.location)
+            })
+            .catch((err) => {
+                alert(err)
+            })
+
         const file = e.target.files[0]
         formData.append('image', file)
     }
 
 
-    const deleteHandler = (id) => {
+    const deleteHandler = (id, image) => {
+        const imageDelete = image.split('https://libraryprojectg2.s3.amazonaws.com/media/')[1]
         if (window.confirm('Are you sure you want to delete this book ?')) {
+            S3FileUpload
+                .deleteFile(imageDelete, configDelete)
+                .then(response => console.log(response))
+                .catch(err => console.error(err))
+
+            window.Buffer = window.Buffer || require("buffer").Buffer;
+
             dispatch(deleteBook(id))
         }
     }
@@ -194,9 +232,9 @@ function BookListScreen({keyword}) {
             {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
             {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
-                <div style={{overflow:'auto', height:'75vh'}}>
+                <div style={{overflow: 'auto', height: '75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
-                        <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
+                        <thead style={{tableLayout: "fixed", textAlign: "center", position: "sticky"}}>
                         <tr>
                             <th>TITLE</th>
                             <th>AUTHOR</th>
@@ -207,7 +245,7 @@ function BookListScreen({keyword}) {
 
                         </tr>
                         </thead>
-                        <tbody style={{overflow:'auto', textAlign:"center"}}>
+                        <tbody style={{overflow: 'auto', textAlign: "center"}}>
                         {books.map(book => (
                             <tr key={book._id}>
                                 <td>{book.title}</td>
@@ -224,7 +262,8 @@ function BookListScreen({keyword}) {
                                     </Button>
                                 </td>
                                 <td>
-                                    <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(book._id)}>
+                                    <Button variant='danger' className='btn-sm'
+                                            onClick={() => deleteHandler(book._id, book.image)}>
                                         <i className='far fa-trash-alt fa-2x'></i>
                                     </Button>
                                 </td>
@@ -258,48 +297,49 @@ function BookListScreen({keyword}) {
                                 <Col>
                                     <Row>
                                         <Form.Group className="mb-4" controlid='title'>
-                                        <Form.Label>Title: </Form.Label>
-                                        <Form.Control
-                                            type='name' placeholder='Enter Title'
-                                            value={title}
-                                            onChange={(e) => setTitle(e.target.value)}>
-                                        </Form.Control>
-                                    </Form.Group>
+                                            <Form.Label>Title: </Form.Label>
+                                            <Form.Control
+                                                type='name' placeholder='Enter Title'
+                                                value={title}
+                                                onChange={(e) => setTitle(e.target.value)}>
+                                            </Form.Control>
+                                        </Form.Group>
                                     </Row>
                                     <Row>
                                         <Form.Group className="mb-4" controlid='author'>
-                                        <Form.Label>Author: </Form.Label>
-                                        <Form.Control
-                                            type='name' placeholder='Enter Author'
-                                            value={author}
-                                            onChange={(e) => setAuthor(e.target.value)}>
-                                        </Form.Control>
-                                    </Form.Group>
+                                            <Form.Label>Author: </Form.Label>
+                                            <Form.Control
+                                                type='name' placeholder='Enter Author'
+                                                value={author}
+                                                onChange={(e) => setAuthor(e.target.value)}>
+                                            </Form.Control>
+                                        </Form.Group>
                                     </Row>
                                     <Row>
                                         <Form.Group className="mb-4" controlid='isbn'>
-                                        <Form.Label>ISBN: </Form.Label>
-                                        <Form.Control
-                                            type='name' placeholder='Enter Isbn'
-                                            value={isbn}
-                                            onChange={(e) => setIsbn(e.target.value)}>
-                                        </Form.Control>
-                                    </Form.Group>
+                                            <Form.Label>ISBN: </Form.Label>
+                                            <Form.Control
+                                                type='name' placeholder='Enter Isbn'
+                                                value={isbn}
+                                                onChange={(e) => setIsbn(e.target.value)}>
+                                            </Form.Control>
+                                        </Form.Group>
                                     </Row>
                                     <Row>
                                         <Form.Label>Select Category:</Form.Label>
-                                    <Form.Select aria-label="Default select example" controlid='category'
-                                                 defaultValue={category[0]}
-                                                 onChange={(e) => setCategory(e.target.value)} style={{width:'50%', margin:"auto"}}>
-                                        <option>{book.categoryName}</option>
-                                        {categories.map(category => (
-                                            <option key={category._id} value={category._id}>{category.nom}</option>
-                                        ))}
-                                    </Form.Select>
+                                        <Form.Select aria-label="Default select example" controlid='category'
+                                                     defaultValue={category[0]}
+                                                     onChange={(e) => setCategory(e.target.value)}
+                                                     style={{width: '50%', margin: "auto"}}>
+                                            <option>{book.categoryName}</option>
+                                            {categories.map(category => (
+                                                <option key={category._id} value={category._id}>{category.nom}</option>
+                                            ))}
+                                        </Form.Select>
                                     </Row>
                                 </Col>
                             </Row>
-                            <Row style={{marginTop:20}}>
+                            <Row style={{marginTop: 20}}>
                                 <Col>
                                     <Form.Group className="mb-4" controlid='date_pub'>
                                         <Form.Label>Publication Date:</Form.Label>
