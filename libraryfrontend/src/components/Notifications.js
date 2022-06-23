@@ -19,7 +19,9 @@ const notis = (variant, message) => {
 function Notification({variant, message}) {
     return (
         <div>
+            {toast.clearWaitingQueue()}
             {notis(variant, message)}
+            {toast.dismiss()}
             <ToastContainer position="bottom-right" limit={3}/>
         </div>
     );
