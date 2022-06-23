@@ -24,7 +24,6 @@ function Notification({variant, message}) {
             {notis(variant, message)}
 
             <ToastContainer position="bottom-right" limit={1}/>
-            {toast.clearWaitingQueue()}
         </div>
     );
 }
