@@ -3,6 +3,8 @@ import { HashRouter as Router, Route, Routes, } from "react-router-dom";
 import { Container } from 'react-bootstrap'
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import 'react-notifications/lib/notifications.css';
 import './App.css';
 import './index.css'
@@ -31,6 +33,7 @@ function App() {
 
             <main className="py-3">
                 <Container>
+                    <ToastContainer position="bottom-right" limit={4}/>
                     <Routes>
                         <Route path="/" element={<HomeScreen/>} exact></Route>
                         <Route path="/signup" element={<SignUpScreen/>}></Route>

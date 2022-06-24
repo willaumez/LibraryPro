@@ -2,6 +2,8 @@ import { BAG_BUY_ADD_ITEM, BAG_BORROW_ADD_ITEM, BAG_BORROW_REMOVE_ITEM, BAG_BUY_
         BAG_SAVE_SHIPPING_ADDRESS, BAG_SAVE_PAYMENT_METHOD, BAG_CONFIRM_BORROW,} from "../constants/bagConstants";
 import axios from "axios";
 import { CurrentDate, LimitDate } from "../components/DatesTimes";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const addToBuyBag = (id, qteSel) => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/books/${id}`)
@@ -18,6 +20,7 @@ export const addToBuyBag = (id, qteSel) => async (dispatch, getState) => {
         }
     })
     localStorage.setItem('bagBuyItems',JSON.stringify(getState().bagBuy.bagBuyItems))
+     toast.success('Book Add to shopping cart');
 }
 
 export const removeFromBagBuy = (id) => (dispatch,getState) => {
@@ -26,6 +29,7 @@ export const removeFromBagBuy = (id) => (dispatch,getState) => {
         payload: id,
     })
     localStorage.setItem('bagBuyItems',JSON.stringify(getState().bagBuy.bagBuyItems))
+    toast.success('Book Remove from shopping cart');
 }
 
 
@@ -70,6 +74,7 @@ export const addToBorrowBag = (id) => async (dispatch, getState) => {
         }
     })
     localStorage.setItem('bagBorrowItems',JSON.stringify(getState().bagBorrow.bagBorrowItems))
+    toast.success('Book Add to borrowing basket');
 }
 
 export const removeFromBagBorrow = (id) => (dispatch,getState) => {
@@ -78,4 +83,5 @@ export const removeFromBagBorrow = (id) => (dispatch,getState) => {
         payload: id,
     })
     localStorage.setItem('bagBorrowItems',JSON.stringify(getState().bagBorrow.bagBorrowItems))
+    toast.success('Book Remove from borrowing basket');
 }

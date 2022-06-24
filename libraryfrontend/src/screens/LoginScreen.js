@@ -40,7 +40,6 @@ function LoginScreen() {
     return(
         <FormContainer>
             <h1 style={{marginTop:'5%'}}>Login</h1>
-            {error && <Notification variant='danger' message={error}/>}
 
             {loading && <Loader/>}
 

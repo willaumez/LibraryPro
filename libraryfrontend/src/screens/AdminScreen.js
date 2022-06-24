@@ -8,6 +8,8 @@ import BuyingListScreen from "./BuyingsListScreen";
 import BorrowListScreen from "./BorrowListScreen";
 import CategoryListScreen from "./CategoryListScreen";
 import OrderedListScreen from "./OrderedListScreen";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdminScreen() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -17,7 +19,8 @@ function AdminScreen() {
 
     return (
         <div>
-            <Tab.Container id="left-tabs-example" defaultActiveKey={key}>
+
+            <Tab.Container id="left-tabs-example" defaultActiveKey={key}  style={{textOverflow:"ellipsis"}}>
                 <Row>
                     <Col sm={3}>
                         <Nav variant="pills" className="flex-column">

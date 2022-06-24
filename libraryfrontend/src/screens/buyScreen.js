@@ -3,12 +3,8 @@ import {Link, useLocation, useParams, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {Row, Col, ListGroup, Image, Form, Button, Card} from "react-bootstrap";
 import Message from "../components/Message";
-import Loader from "../components/Loader";
 import {addToBuyBag, removeFromBagBuy} from "../actions/bagActions";
 import {LinkContainer} from "react-router-bootstrap";
-
-
-const proxy = '/static'
 
 
 function BuyScreen({book_id, qte}) {

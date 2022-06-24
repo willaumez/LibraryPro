@@ -4,12 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {CurrentDate, LimitDate} from "../components/DatesTimes";
 import {Row, Col, ListGroup, Image, Form, Button, Card} from "react-bootstrap";
 import Message from "../components/Message";
-import Loader from "../components/Loader";
 import {addToBorrowBag, removeFromBagBorrow} from "../actions/bagActions";
 import {LinkContainer} from "react-router-bootstrap";
-
-const proxy = '/static'
-
 
 function BorrowScreen({book_id, qte}) {
 

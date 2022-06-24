@@ -5,7 +5,6 @@ import {Form, Button, Table, Row, Col, Card} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import Notification from "../components/Notifications";
 import Paginate from "../components/Paginate";
 import {listBooks, deleteBook, createBook, listBookDetails, updateBook,} from "../actions/bookActions";
 import {listCategories} from "../actions/categoryActions";
@@ -16,9 +15,8 @@ import {deleteFile} from "react-s3";
 import S3FileUpload from "react-s3/lib/ReactS3";
 import {aws} from "../keys";
 import {Buffer} from "buffer";
-import {Pagination} from "react-bootstrap";
-import {LinkContainer} from "react-router-bootstrap";
-import {useParams} from "react-router";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 Buffer.from("anything", "base64");
 window.Buffer = window.Buffer || require("buffer").Buffer;
@@ -73,10 +71,6 @@ function BookListScreen({keyword}) {
 
     let formData = new FormData()
 
-
-    //const userUpdate = useSelector(state => state.userUpdate)
-    //const { error: errorUpdate, loading: loadingUpdate, success:successUpdate } = userUpdate
-
     const [show, setShow] = useState(false);
     const [create, setCreate] = useState(false);
     const handleClose = () => setShow(false);
@@ -116,7 +110,6 @@ function BookListScreen({keyword}) {
 
 
     }, [dispatch, userInfo, navigate, successDelete, successCreate, book, bookId, successUpdate, keyword])
-    //console.log(categories)
 
 
     const uploadFileHandler = async (e) => {
@@ -133,8 +126,12 @@ function BookListScreen({keyword}) {
             setImage(data)
             setUploading(false)
 
+            toast.success('File upload successful...');
+
         } catch (error) {
             setUploading(false)
+
+            toast.warning('File upload failed...');
         }
         dispatch(listBookDetails(bookId))
 
@@ -149,6 +146,7 @@ function BookListScreen({keyword}) {
             .catch((err) => {
                 alert(err)
             })
+        toast.success('File upload successful...');
 
         const file = e.target.files[0]
         formData.append('image', file)
@@ -164,6 +162,8 @@ function BookListScreen({keyword}) {
                 .catch(err => console.error(err))
 
             window.Buffer = window.Buffer || require("buffer").Buffer;
+
+            toast.success('File deletion was successful');
 
             dispatch(deleteBook(id))
         }
@@ -222,19 +222,8 @@ function BookListScreen({keyword}) {
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
 
-            {successCreate && <Notification variant='success' message='Create Book Success'/>}
-            {successDelete && <Notification variant='success' message='Delete Book Success'/>}
-            {successUpdate && <Notification variant='success' message='Update Book Success'/>}
-            {successDetail && <Notification variant='success' message='Detail Book Success'/>}
 
-
-            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
-            {errorCreate && <Notification variant='danger' message={errorCreate}/>}
-            {errorDetail && <Notification variant='info' message={errorDetail}/>}
-            {errorUpdate && <Notification variant='warning' message={errorUpdate}/>}
-
-
-            {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
+            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
                 <div style={{overflow: 'auto', height: '75vh'}}>
                     <Table striped bordered hover responsive className='table-sm'>
                         <thead style={{tableLayout: "fixed", textAlign: "center", position: "sticky"}}>
@@ -289,7 +278,7 @@ function BookListScreen({keyword}) {
 
                 <Modal.Body>
                     {loadingDetail ? <Loader/> : errorDetail ?
-                        <Notification variant='danger' message={errorDetail}/> : (
+                        <Message variant='danger'>{errorDetail}</Message> : (
                             <Form onSubmit={submitHandler}>
                                 <Row>
                                     <Col md={4} sm={4}>
@@ -419,9 +408,8 @@ function BookListScreen({keyword}) {
                     <Modal.Title id="contained-modal-title-vcenter">Create Book</Modal.Title>
                 </Modal.Header>
 
-                {loadingCreate && <Loader/>}
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='danger' message={errorDetail}/> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
                         <Form onSubmit={submitCreateHandler}>
                             <Row>
                                 <Col>

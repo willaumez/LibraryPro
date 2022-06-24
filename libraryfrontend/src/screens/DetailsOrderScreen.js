@@ -11,8 +11,6 @@ import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from "../constants/orderConstant
 import { listMyOrders } from "../actions/orderActions";
 import Notification from "../components/Notifications";
 
-const proxy = '/static'
-
 
 function DetailsOrderScreen() {
     const { id } = useParams();
@@ -76,7 +74,7 @@ function DetailsOrderScreen() {
     }
 
 
-    return loading ? ( <Loader/> ) : error ? ( <Notification variant='danger' message={error}/> ):
+    return loading ? ( <Loader/> ) : error ? ( <Message variant='danger'>{error}</Message> ):
         (
             <div style={{marginBottom:'8%'}}> <h1> Order:  {order._id} </h1>
 

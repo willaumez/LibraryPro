@@ -94,7 +94,7 @@ function BookScreen() {
                 className="fa fa-undo" aria-hidden="true"> </i> GO Back</Link>
 
 
-            {loading ? <Loader/> : error ? <Notification variant='danger' message={error}/> : (
+            {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
                 <div>
                     <Row>
                         <Col className='p-5'>
@@ -292,8 +292,6 @@ function BookScreen() {
                                 <ListGroup.Item>
                                     <h4>Write a review:</h4>
                                     {loadingBookReview && <Loader/>}
-                                    {successBookReview && <Notification variant='success' message={successBookReview}/>}
-                                    {errorBookReview && <Notification variant='danger' message={errorBookReview}/>}
                                     {userInfo ? (
                                         <Form onSubmit={submitHandler}>
                                             <Form.Group controlId='comment'>

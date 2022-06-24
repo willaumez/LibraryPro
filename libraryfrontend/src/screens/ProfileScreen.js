@@ -9,6 +9,7 @@ import {getUserDetails, updateUserProfile} from "../actions/userActions";
 import {USER_UPDATE_PROFILE_RESET} from "../constants/userConstants";
 import {listMyOrders, listMyBorrows, listMyOrdered} from "../actions/orderActions";
 import Notification from "../components/Notifications";
+import {toast} from "react-toastify";
 
 
 function ProfileScreen() {
@@ -71,17 +72,19 @@ function ProfileScreen() {
             }))
             setMessage('')
         }
-
-
+    }
+    if (message){
+        const toastId = toast.warning(`${message}`)
+        setMessage('')
     }
 
     return (<div style={{marginBottom: '10%'}}>
             <Tabs fill defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3" style={{margin: 20}}>
                 <Tab eventKey="profile" title="PROFILE" className='py-3' style={{borderColor: "blue"}}>
                     <h2>Update User Profile</h2>
-                    {message && <Notification variant='warning' message={message}/>}
-                    {error && <Notification variant='danger' message={error}/>}
+
                     {loading && <Loader/>}
+
                     <Col md={6} style={{margin: "auto"}}>
 
                         <Form onSubmit={submitHandler}>
@@ -126,7 +129,7 @@ function ProfileScreen() {
 
                 <Tab eventKey="buying" title="BUYINGS">
                     <h2 style={{marginTop: '3%'}}>My Orders </h2>
-                    {loadingOrders ? (<Loader/>) : errorOrders ? (<Notification variant='danger' message={errorOrders}/>) : (
+                    {loadingOrders ? (<Loader/>) : errorOrders ? (<Message variant='danger'>{errorOrders}</Message>) : (
                         <div>
                         <Table striped responsive className='table-sm' style={{marginTop: '2%'}}>
                             <thead style={{textAlign: "center"}}>
@@ -162,7 +165,7 @@ function ProfileScreen() {
                 <Tab eventKey="borrows" title="BORROWINGS">
                     <h2 style={{marginTop: '3%'}}>My Borrows </h2>
                     {loadingBorrows ? (<Loader/>) : errorBorrows ? (
-                        <Notification variant='danger' message={errorBorrows}/>) : (<div>
+                        <Message variant='danger'>{errorBorrows}</Message>) : (<div>
                         <Table striped responsive className='table-sm' style={{marginTop: '2%'}}>
                             <thead style={{textAlign: "center"}}>
                             <tr>
@@ -196,7 +199,7 @@ function ProfileScreen() {
                 <Tab eventKey="orders" title="ORDERS">
                     <h2 style={{marginTop: '3%'}}>My Orders </h2>
                     {loadingOrdered ? (<Loader/>) : errorOrdered ? (
-                        <Notification variant='danger' message={errorOrdered}/>) : (<div>
+                        <Message variant='danger'>{errorOrdered}</Message>) : (<div>
                         <Table striped responsive className='table-sm' style={{marginTop: '2%'}}>
                             <thead style={{textAlign: "center"}}>
                             <tr>

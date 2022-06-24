@@ -7,9 +7,6 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getBorrowDetails, listMyBorrows, takeBorrow, returnBorrow} from "../actions/orderActions";
 import { BORROW_TAKE_RESET, BORROW_RETURN_RESET  } from "../constants/orderConstants";
-import Notification from "../components/Notifications";
-
-const proxy = '/static'
 
 
 function DetailsBorrowScreen() {
@@ -48,7 +45,7 @@ function DetailsBorrowScreen() {
         dispatch(returnBorrow(borrow))
     }
 
-    return loading ? ( <Loader/> ) : error ? ( <Notification variant='warning' message={error} />): (
+    return loading ? ( <Loader/> ) : error ? ( <Message variant='danger'>{error}</Message>): (
         <div style={{marginBottom:'8%'}}>  <h1> Borrow:  {borrow._id} </h1>
             <Row>
                     <Col>

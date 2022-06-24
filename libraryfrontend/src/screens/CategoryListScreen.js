@@ -10,6 +10,9 @@ import {deleteCategory, listCategories, listCategoryDetails, updateCategory, cre
 import {listBooks} from "../actions/bookActions";
 import Notification from "../components/Notifications";
 
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function CategoryListScreen() {
     const navigate = useNavigate();
@@ -18,6 +21,7 @@ function CategoryListScreen() {
 
     const categoryList = useSelector(state => state.categoryList)
     const {loading, error, categories} = categoryList
+
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
@@ -61,7 +65,7 @@ function CategoryListScreen() {
                 navigate('/login')
             }
         }
-    }, [category.description, category.nom, dispatch, navigate, successDelete, userInfo])
+    }, [category, dispatch, navigate, successDelete, userInfo])
 
 
     const submitCreateHandler = (e) => {
@@ -69,6 +73,7 @@ function CategoryListScreen() {
         dispatch(createCategory({nom, description}))
         dispatch(listCategories())
         setCreate(false)
+        navigate(`/admin/?key=categories`)
     }
 
     const createBookHandler = () => {
@@ -80,6 +85,7 @@ function CategoryListScreen() {
         if (window.confirm('Are you sure you want to delete this category ?')) {
             dispatch(deleteCategory(id))
             dispatch(listBooks(''))
+            navigate(`/admin/?key=categories`)
         }
     }
     let editHandler = (id) => {
@@ -93,11 +99,14 @@ function CategoryListScreen() {
         e.preventDefault()
         dispatch(updateCategory({_id: bookId, nom, description}))
         setShow(false)
+        navigate(`/admin/?key=categories`)
     }
 
 
     return (
         <div>
+
+
             <Row className='align-items-center'>
                 <Col className='text-center'>
                     <Button className='my-3 bg-success' style={{float: "right", borderRadius: 20}}
@@ -111,18 +120,9 @@ function CategoryListScreen() {
             {loadingDetail && <Loader/>}
             {loadingCreate && <Loader/>}
 
-            {successCreate && <Notification variant='success' message='Create Category Success'/>}
-            {successDelete && <Notification variant='success' message='Delete Category Success'/>}
-            {successUpdate && <Notification variant='success' message='Update Category Success'/>}
-            {successDetail && <Notification variant='success' message='Detail Category Success'/>}
 
 
-            {errorCreate && <Notification variant='danger' message={errorCreate}/>}
-            {errorDetail && <Notification variant='info' message={errorDetail}/>}
-            {errorUpdate && <Notification variant='warning' message={errorUpdate}/>}
-            {error && <Notification variant='warning' message={error}/>}
-
-            {loading ? (<Loader/>) : error ? (<Notification variant='warning' message={error}/>) : (
+            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>
@@ -163,7 +163,7 @@ function CategoryListScreen() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='warning' message={errorDetail}/> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
                         <Form onSubmit={submitHandler}>
                             <Row>
                                 <Form.Group className="mb-4" controlId='nom'>
@@ -207,7 +207,7 @@ function CategoryListScreen() {
 
                 {loadingCreate && <Loader/>}
                 <Modal.Body>
-                    {loadingDetail ? <Loader/> : errorDetail ? <Notification variant='warning' message={errorDetail}/> : (
+                    {loadingDetail ? <Loader/> : errorDetail ? <Message variant='danger'>{errorDetail}</Message> : (
                         <Form onSubmit={submitCreateHandler}>
                             <Row>
                                 <Form.Group className="mb-4" controlId='nom'>

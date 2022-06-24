@@ -49,7 +49,7 @@ function HomeScreen() {
                 <h1>BOOKS</h1>
             )}
             {loading ? <Loader/>
-                : error ? <Notification variant='warning' message={error}/>
+                : error ? <Message variant='danger'>{error}</Message>
                     :
                     <div>
                         <Row>

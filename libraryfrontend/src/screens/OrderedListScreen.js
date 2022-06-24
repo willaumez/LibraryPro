@@ -6,8 +6,6 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {listMyOrdered, listOrdered} from "../actions/orderActions";
 import { deleteOrdered } from "../actions/orderActions";
-import {deleteUser, getUserDetails, listUsers} from "../actions/userActions";
-import {USER_UPDATE_RESET} from "../constants/userConstants";
 import Notification from "../components/Notifications";
 
 function OrderedListScreen() {
@@ -52,13 +50,9 @@ function OrderedListScreen() {
         <div>
 
             {loadingDelete && <Loader/>}
-            {successDelete && <Notification variant='success' message='Delete Ordered Success'/>}
 
 
-            {errorDelete && <Notification variant='danger' message={errorDelete}/>}
-            {error && <Notification variant='danger' message={error}/>}
-
-            {loading ? (<Loader/>) : error ? (<Notification variant='danger' message={error}/>) : (
+            {loading ? (<Loader/>) : error ? (<Message variant='danger'>{error}</Message>) : (
                 <div style={{overflow:'auto', height:'75vh'}}>
                 <Table striped bordered hover responsive className='table-sm'>
                     <thead style={{tableLayout:"fixed", textAlign:"center", position:"sticky"}}>

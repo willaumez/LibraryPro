@@ -16,7 +16,7 @@ const spinner = () => {
 
 function Loader() {
     return (
-        <LoadingOverlay active={true} spinner={spinner()} text="Loading your content...">
+        <LoadingOverlay active={true} spinner={spinner()} text="Loading...">
 
         </LoadingOverlay>
 

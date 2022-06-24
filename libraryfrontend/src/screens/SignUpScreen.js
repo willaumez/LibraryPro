@@ -7,6 +7,8 @@ import Message from "../components/Message";
 import {login, signup} from "../actions/userActions";
 import FormContainer from "../components/FormContainer";
 import Notification from "../components/Notifications";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUpScreen() {
     const [name, setName] = useState('')
@@ -43,13 +45,16 @@ function SignUpScreen() {
         }
     }
 
+    if (message){
+        const toastId = toast.warning(`${message}`)
+        setMessage('')
+    }
+
 
     return(
         <FormContainer>
             <h1 style={{marginTop:'5%'}}>Sign Up</h1>
-            {message && <Notification variant='warning' message={message}/>}
 
-            {error && <Notification variant='danger' message={error}/>}
             {loading && <Loader/>}
 
             <Form onSubmit={submitHandler}>

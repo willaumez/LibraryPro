@@ -35,7 +35,7 @@ function PlaceOrderScreen() {
         if (!bag.paymentMethod){
         navigate('/payment')
         }
-    },[success, navigate, dispatch, bag.paymentMethod, order])
+    },[success, navigate, dispatch, bag, order])
 
     const placeOrder = () => {
       dispatch(createOrder({
