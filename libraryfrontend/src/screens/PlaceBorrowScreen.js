@@ -33,7 +33,7 @@ function PlaceBorrowScreen() {
             navigate(`/borrow/${borrow._id}`)
             dispatch({ type: BORROW_CREATE_RESET })
         }
-    },[success, navigate, dispatch, bag.paymentMethod, bag._id, bag.confirmMethod, borrow._id])
+    },[success, navigate, dispatch, bag.paymentMethod, bag._id, bag.confirmMethod, borrow])
 
     const placeBorrow = () => {
       dispatch(createBorrow({
