@@ -1,3 +1,7 @@
+body {
+    font-style: oblique;
+}
+
 .nav.nav-pills .nav-link.active {
     background-color: green;
     border-radius: 20px;
@@ -140,4 +144,64 @@ img {
 }
 
 
+h2 {
+    font-family: Rockwell, "Times New Roman", serif;
+    font-style: italic;
+}
 
+h1{
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 34px;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 37.4px;
+}
+h5, h4 {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 24px;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 30.4px;
+}
+
+h3 {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 15.4px;
+}
+
+p {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 15.4px;
+}
+
+blockquote {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23.1px;
+}
+
+pre {
+    font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 14.3px;
+}
+
+.Link{
+    text-decoration: none;
+}

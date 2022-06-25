@@ -123,7 +123,7 @@ def createBookReview(request, pk):
     review = Review.objects.create(
         user=user,
         book=book,
-        name=user.first_name,
+        name=user.first_name or user.email,
         comment=data['comment'],
     )
     reviews = book.review_set.all()

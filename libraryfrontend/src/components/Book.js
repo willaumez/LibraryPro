@@ -9,22 +9,17 @@ import {GetCategory} from "./GetCategoryName";
 
 function Book({book}) {
 
-    //const [isCate, setIsCate] = useState(false)
-    //const category = !isCate ? GetCategory(book.category) : setIsCate(false)
-
-
-    //console.log('Category2----------------:', category)
 
     return (
-        <Card className="my-3 p-2" style={{textAlign: "center", borderRadius: 30}}>
-            <Link to={`/book/${book._id}`}>
+        <Card className="my-3 p-2" style={{textAlign: "center", borderRadius: 30, boxShadow:'2px 2px 2px 2px green'}}>
+            <Link to={`/book/${book._id}`} style={{borderRadius: 30}}>
                 <Card.Img src={book.image}
-                          style={{height: 480, borderRadius: '30px 30px 0px 0px'}}/>
+                          style={{height: 430}}/>
             </Link>
             <Card.Body>
                 <Link to={`/book/${book._id}`}>
                     <Card.Title as="div">
-                        <strong className='titre'> {book.title}</strong>
+                         {book.title}
                     </Card.Title>
                 </Link>
                 <div className="my-3">

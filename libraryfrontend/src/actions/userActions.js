@@ -32,8 +32,8 @@ export const login = (email, password) => async (dispatch) => {
             payload: data
         })
 
-        toast.success('Login Successful...');
         localStorage.setItem('userInfo', JSON.stringify(data))
+        toast.success('Login Successful...');
 
 
     } catch (error) {
@@ -49,6 +49,8 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('bagBuyItems')
+    localStorage.removeItem('bagBorrowItems')
     dispatch({type: USER_LOGOUT})
     dispatch({type: USER_DETAILS_RESET})
     dispatch({type: ORDER_LIST_MY_RESET})

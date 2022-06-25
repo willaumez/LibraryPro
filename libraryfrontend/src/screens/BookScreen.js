@@ -97,11 +97,11 @@ function BookScreen() {
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
                 <div>
                     <Row>
-                        <Col className='p-5'>
+                        <Col md={6} className='p-5'>
                             <Image src={book.image} alt={book.title} fluid
-                                   style={{borderRadius: 20, maxHeight: 950}}/>
+                                   style={{borderRadius: 30, Height: 850, border:"solid"}}/>
                         </Col>
-                        <Col style={{padding: '2%', textAlign: "center"}}>
+                        <Col md={6} style={{padding: '2%', textAlign: "center"}}>
                             <Row>
                                 <ListGroup variant="flush" style={{width: '80%', margin: "auto"}}>
                                     <ListGroup.Item style={{textAlign: "center"}}>
@@ -277,7 +277,7 @@ function BookScreen() {
                                         <ListGroup.Item key={review._id}>
                                             <Row>
                                                 <Col>
-                                                    <strong style={{color: "green"}}>{review.name}</strong>
+                                                    <strong style={{color: "green"}}>{review.name ? (review.name) : (review.user)}</strong>
                                                     <p>{review.createdAt.substring(0, 10)}</p>
                                                 </Col>
                                                 <Col>
