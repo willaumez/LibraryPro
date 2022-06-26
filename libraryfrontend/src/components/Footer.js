@@ -37,6 +37,16 @@ function Footer() {
                                 role="button" target='_blank'
                             ><i className="fab fa-twitter"></i
                             ></a>
+                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                            <a
+                                className="btn btn-primary btn-floating m-1"
+                                style={{backgroundColor: '#333333', borderRadius:'30%'}}
+                                href="https://github.com/willaumez/LibraryPro.git"
+                                role="button" target='_blank'
+                            ><i className="fab fa-github"></i
+                            >
+                                Source Code
+                            </a>
 
                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <a
@@ -47,14 +57,6 @@ function Footer() {
                             ><i className="fab fa-google"></i
                             ></a>
 
-                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                            <a
-                                className="btn btn-primary btn-floating m-1"
-                                style={{backgroundColor: '#ac2bac', borderRadius:'30%'}}
-                                href="https://www.instagram.com/"
-                                role="button" target='_blank'
-                            ><i className="fab fa-instagram"></i
-                            ></a>
 
                             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                             <a
@@ -64,14 +66,7 @@ function Footer() {
                                 role="button" target='_blank'
                             ><i className="fab fa-linkedin-in"></i
                             ></a>
-                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                            <a
-                                className="btn btn-primary btn-floating m-1"
-                                style={{backgroundColor: '#333333', borderRadius:'30%'}}
-                                href="https://github.com/"
-                                role="button" target='_blank'
-                            ><i className="fab fa-github"></i
-                            ></a>
+
                         </section>
                     </div> }
 

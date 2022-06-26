@@ -13,8 +13,6 @@ import {createOrder, addOrdered, listMyOrdered} from "../actions/orderActions";
 import Notification from "../components/Notifications";
 
 
-const proxy = '/static'
-
 
 function BookScreen() {
     const {id} = useParams();
@@ -265,7 +263,7 @@ function BookScreen() {
                     <Row style={{marginTop: '8%', marginBottom: '8%'}}>
                         <Row style={{margin: "auto", width: '80%'}}>
                             <h5 style={{
-                                width: '40%', color: "white", textAlign: "center",
+                                width: '30%', color: "white", textAlign: "center",
                                 margin: "auto", borderRadius: 30
                             }} className='bg-success'>Reviews</h5>
 
